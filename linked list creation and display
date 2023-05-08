@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+struct node *createNodeList(int n);
+void displayList(struct node *head);
+void displayList(struct node *head){
+    struct node *ptr=head;
+    while(ptr !=NULL){
+        printf("\t%d->",ptr->data);
+        ptr=ptr->next;
+    }
+}
+int main(){
+    int n;
+    struct node *HEAD=NULL;
+    printf(" Input the number of nodes : ");
+    scanf("%d", &n);
+   HEAD= createNodeList(n);
+    printf("\n Data entered in the list : \n");
+    displayList(HEAD);
+    return 0;
+
+}
+struct node *createNodeList(int n){
+          struct node *head=NULL, *ptr=NULL, *temp=NULL;
+          for(int i=0;i<n;i++){
+            temp=(struct node*)malloc(sizeof(struct node*));
+            printf("\nEnter data for node %d:",i+1);
+            scanf("%d", &(temp->data));
+            if(head==NULL){
+                head=temp;
+            }
+            else{
+                ptr=head;
+                while(ptr->next!=NULL)
+                    ptr=ptr->next;
+
+                
+                ptr->next=temp;
+            }
+          }
+          return head;
+          
+}
